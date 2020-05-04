@@ -33,11 +33,12 @@ notesCtrl.createNotes = async (req, res) => {
 
 //Actualizando una nota...  {PUT} --> ('/:id')
 notesCtrl.updateNotes = async (req, res) => {
-    const {title, content, author} = req.body;
-    await Note.findOneAndUpdate({_id:req.params.id}, {
+    const {title, content, author, date} = req.body;
+    await Note.findByIdAndUpdate(req.params.id, {
         title: title,
         content: content,
-        author: author
+        author: author,
+        date: date
     });
     res.json({message: 'notes updated successfuly'});
 }
